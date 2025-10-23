@@ -1,0 +1,13 @@
+[Unit]
+Description=My test service
+
+[Service]
+Type=simple
+ExecStart=/bin/bash -c 'while true; do echo "$(date): Hello from systemd!" >> /tmp/test.log; sleep 60; done'
+WorkingDirectory=/tmp
+
+[Install]
+WantedBy=multi-user.target
+
+sudo systemctl daemon-reload
+sudo systemctl enable --now mytest.service
